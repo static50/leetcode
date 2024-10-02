@@ -15,12 +15,10 @@ def lengthofLongestSubstring(s: str) -> int:
             print(left)
             substrings.append(substr)      
             # find the closest equal element to s[right] and make sure we don't include it 
+            substr = s[left:] 
             repeated_dict[current_char] = right  
-            left = repeated_dict[current_char]
             print(repeated_dict)
             left += 1 
-            # create a substring from closest equal element to the other equal element
-            substr = s[left:] 
         else:
             substr += current_char
               
