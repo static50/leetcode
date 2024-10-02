@@ -1,55 +1,27 @@
-def lengthofLongestSubstring(s: str) -> int:
-    left = 0 
-    s = "abcbdefabc"
-    substr = ""
-    substrings = [] 
-    repeated_dict = dict()
-    longest_repeat = 0
-    current_length = 0 
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left = 0
+        substr = ""
+        repeated_dict = dict()
+        longest_repeat = 0
+        current_length = 0
 
-    for right in range(len(s)):
-        current_char = s[right]  
-        
-        if current_char in repeated_dict: 
-            if right > longest_repeat:
-                longest_repeat = right
-            
-            left = longest_repeat + 1
-            print(f"left: {left}")
-            substr = s[left:right]
+        for right in range(len(s)):
+            current_char = s[right]
 
+            if current_char in substr:
+               if right > longest_repeat:
+                  longest_repeat = right
 
-        repeated_dict[current_char] = right 
-        substr += current_char # append the current character to the substring 
-        
-        if len(substr) > current_length:
-            current_length = len(substr)
+               left = repeated_dict[current_char]
+               substr = s[left:right]
 
-        print(current_length)
-        
-        print(substr)
-        print(repeated_dict)
-        
+            repeated_dict[current_char] = right
 
-lengthofLongestSubstring("")
+            if current_char not in substr:
+                substr += current_char  # append the current character to the substring
 
-# for every character in string s
-    # if the character is already in the dictionary 
-        # and if the character value is longer than the last recorded
-            # the longest is now that character value
-            
+            if len(substr) > current_length:
+                current_length = len(substr)
 
-
-
-
-
-# Notes:
-# 
-
-
-
-
-
-
-
-
+        return current_length
